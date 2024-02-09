@@ -1,2 +1,5 @@
 # fast-url
-Fast webscraper
+Blazingly Fast
+Fearless Concurrency
+
+A simple tool for parsing URLs, quickly.
