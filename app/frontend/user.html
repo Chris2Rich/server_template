@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/style.css">
+    <meta charset="UTF-8" />
+    <title>Eazy.xl | User</title>
+</head>
+
+<body>
+    <navbar>
+        <a href="/">Home</a>
+        <a>Video</a>
+        <a>Stream</a>
+        <a>Blog</a>
+        <a>Chat</a>
+        <a>Create</a>
+        <a href="/user">User</a>
+    </navbar>
+
+    <searchbar>
+        <form id="search" action="search.js" method="post" style="display: flex; width: 100%; margin: 0;">
+            <input id="search_text" type="text" placeholder="Search:" type="search">
+            <input type="submit" value="Search">
+        </form>
+    </searchbar>
+    
+
+    <page_content>
+        <form id="register" regular="true" action="auth.js" method="post" style="flex: 50; flex-direction: column; margin-inline: 5%;">
+            <label>Register</label>
+            <input id="register_email" name="email" placeholder="Email:" required="true" type="email"><br>
+            <input id="register_password" name="password" placeholder="Password:" required="true" minlength="8" maxlength="30" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" type="password"><br>
+            <input type="submit" value="Register">
+            <p style="text-align: center;">Password must:<br>Be at least <em>8</em> characters long<br>Contain a <em>Capital letter</em><br>Contain a <em>Number</em></p>
+        </form>
+        <form id="login" regular="true" action="auth.js" method="post" style="flex: 50; flex-direction: column; margin-inline: 5%;">
+            <label>Login</label>
+            <input id="login_email" name="email" placeholder="Email:" required="true" type="email"><br>
+            <input id="login_password" name="password" placeholder="Password:" required="true" minlength="8" maxlength="30" type="password"><br>
+            <input type="submit" value="Login">
+        </form> 
+    </page_content>
+
+    <script>
+        function navbar_display_selected(){
+            const temp = document.querySelector("navbar").childNodes;
+            const memo = [];
+
+            for(var i = 0; i < temp.length; i++){
+                if(i%2 == 1 && temp[i].href != ""){
+                    memo.push(temp[i]);
+                }
+            }
+
+            for(var i = memo.length - 1; i != 0; i--){
+                if(location.href.includes(memo[i].href)){
+                    memo[i].setAttribute("selected", "true");
+                    return;
+                }
+            }
+
+            memo[0].setAttribute("selected", "true");
+
+            return;
+        }
+
+        document.getElementById("register_password").onkeyup = function(){
+            var text = document.getElementById("register").querySelectorAll("em");
+            var s = document.getElementById("register_password").value;
+            
+            if(s.length < 8){
+                text[0].setAttribute("true", "false");
+            } else {
+                text[0].setAttribute("true", "true");
+            }
+            if(s == s.toLowerCase()){
+                text[1].setAttribute("true", "false");
+            } else {
+                text[1].setAttribute("true", "true");
+            }
+            if(!/\d/.test(s)){
+                text[2].setAttribute("true", "false");
+            } else {
+                text[2].setAttribute("true", "true");
+            }
+        }
+
+        navbar_display_selected()
+        document.getElementById("register_password").onkeyup()
+    </script>
+</body>
