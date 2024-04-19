@@ -2,29 +2,41 @@ import https from "node:https";
 import http from "node:http";
 import fs from "node:fs";
 
-import {get_page} from "./backend/render.js"
-import {authorize} from "./backend/auth.js"
-
 const IP = "192.168.1.106";
 
 const SSL = { 
-    key: fs.readFileSync("app/backend/keys/.key"), 
-    cert: fs.readFileSync("app/backend/keys/.cert"), 
+    key: fs.readFileSync("app/keys/.key"), 
+    cert: fs.readFileSync("app/keys/.cert"), 
 }; 
 
-// Server attempts to delegate request function to a file otherwise assumes page needs to be loaded
+function get_resource(url, res){
+    fs.readFile("app/resources/" + url, "utf-8", (error, result) => {
+        if(error){
+            res.end("Error 500: internal server error : page content");
+        } else {
+            res.end(result);
+        }
+    })
+    return;
+}
 
 const https_server = https.createServer(SSL, async (req, res) => {
-    switch(req.url){
-        case("/auth.js"):
-            console.log(req);
-            const authorized = await authorize(req, res);
-            return;
 
-        default:
-            get_page(req.url, res);
-            return;
+    if(res.url.includes("html")){
+        res.writeHead(200, { "Content-Type": "text/html" });
+        get_resource(res.url, res);
+        return;
     }
+
+    if(res.url.includes("css")){
+        res.writeHead(200, { "Content-Type": "text/css" });
+        get_resource(res.url, res);
+        return;
+    }
+
+    res.writeHead(404, { "Content-Type": "text/json" });
+    res.end("Error 404: page not found");
+    return;
 });
 
 const http_server = http.createServer(async (req, res) => {

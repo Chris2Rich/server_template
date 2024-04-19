@@ -1,0 +1,30 @@
+:root {
+    --color1: #252525;
+    --color2: #323235;
+    --color3: #3B3B3E;
+    --color4: #414146;
+    --color5: #494953;
+
+    --color_active1: #b4bacb;
+    --color_active2: #677294;
+    --alt_color_active1: #b4cbb5;
+    --alt_color_active2: #669369;
+
+    --color_text1: #FED766;
+    --color_text2: #f3f3f4;
+
+    --color_text_active1: #a6bcfe;
+    --color_text_active2: #668DFE;
+    --alt_color_text_active1: #a4fea9;
+    --alt_color_text_active2: #67fe6f;
+    --alt2_color_text_active1: #ffa6a6;
+    --alt2_color_text_active2: #ff6969;
+
+    --transition_fast: 250ms;
+    --transition_mid: 500ms;
+    --transition_slow: 750ms;
+
+    background-color: var(--color3);
+    overflow: scroll;
+    scrollbar-width: none;
+}
