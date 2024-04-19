@@ -22,15 +22,21 @@ function get_resource(url, res){
 
 const https_server = https.createServer(SSL, async (req, res) => {
 
-    if(res.url.includes("html")){
+    if(req.url == "/"){
         res.writeHead(200, { "Content-Type": "text/html" });
-        get_resource(res.url, res);
+        get_resource("index.html", res);
         return;
     }
 
-    if(res.url.includes("css")){
+    if(req.url.includes("html")){
+        res.writeHead(200, { "Content-Type": "text/html" });
+        get_resource(req.url, res);
+        return;
+    }
+
+    if(req.url.includes("css")){
         res.writeHead(200, { "Content-Type": "text/css" });
-        get_resource(res.url, res);
+        get_resource(req.url, res);
         return;
     }
 
@@ -41,7 +47,7 @@ const https_server = https.createServer(SSL, async (req, res) => {
 
 const http_server = http.createServer(async (req, res) => {
     res.writeHead(301, {Location: "https://" + req.headers.host + req.url});
-    res.end();
+    res.end(); 
     return;
 });
 

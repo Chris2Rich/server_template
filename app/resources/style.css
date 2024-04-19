@@ -10,8 +10,8 @@
     --alt_color_active1: #b4cbb5;
     --alt_color_active2: #669369;
 
-    --color_text1: #FED766;
-    --color_text2: #f3f3f4;
+    --color_text1: #f3f3f4;
+    --color_text2: #FED766;
 
     --color_text_active1: #a6bcfe;
     --color_text_active2: #668DFE;
@@ -24,6 +24,8 @@
     --transition_mid: 500ms;
     --transition_slow: 750ms;
 
+    color: var(--color_text1);
+    font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color3);
     overflow: scroll;
     scrollbar-width: none;
