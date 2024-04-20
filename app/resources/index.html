@@ -6,5 +6,26 @@
 </head>
 
 <body>
-    <p>Hello World!</p>
+    <h1>Aim Trainer</h1>
+    <button onclick="start_training()">Start</button>
+
+    <trainer><crosshair></crosshair></trainer>
+
+    <script>
+        const parentDiv = document.querySelector("trainer");
+        const cursorFollower = document.querySelector("crosshair");
+
+        parentDiv.addEventListener("mousemove", (event) => {
+            const relativeX = event.clientX - parentDiv.offsetLeft;
+            const relativeY = event.clientY - parentDiv.offsetTop;
+
+            const clampedX = Math.max(0, Math.min(relativeX, parentDiv.clientWidth - cursorFollower.clientWidth));
+            const clampedY = Math.max(0, Math.min(relativeY, parentDiv.clientHeight - cursorFollower.clientHeight));
+
+            cursorFollower.style.left = `${clampedX}px`;
+            cursorFollower.style.top = `${clampedY}px`;
+        });
+
+        
+    </script>
 </body>
