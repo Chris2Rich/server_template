@@ -9,6 +9,9 @@
     --color_active2: #677294;
     --alt_color_active1: #b4cbb5;
     --alt_color_active2: #669369;
+    --alt2_color_active1: #cbb4b4;
+    --alt2_color_active2: #936666;
+
 
     --color_text1: #f3f3f4;
     --color_text2: #FED766;
@@ -26,7 +29,7 @@
 
     color: var(--color_text1);
     font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--color3);
+    background-color: var(--color2);
     overflow: scroll;
     scrollbar-width: none;
 }
