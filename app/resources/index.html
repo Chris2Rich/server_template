@@ -8,24 +8,45 @@
 <body>
     <h1>Aim Trainer</h1>
     <button onclick="start_training()">Start</button>
+    <time_left>30.0</time_left>
 
-    <trainer><crosshair></crosshair></trainer>
+    <trainer><p></p></trainer>
 
     <script>
-        const parentDiv = document.querySelector("trainer");
-        const cursorFollower = document.querySelector("crosshair");
 
-        parentDiv.addEventListener("mousemove", (event) => {
-            const relativeX = event.clientX - parentDiv.offsetLeft;
-            const relativeY = event.clientY - parentDiv.offsetTop;
+        let button = document.querySelector("button");
 
-            const clampedX = Math.max(0, Math.min(relativeX, parentDiv.clientWidth - cursorFollower.clientWidth));
-            const clampedY = Math.max(0, Math.min(relativeY, parentDiv.clientHeight - cursorFollower.clientHeight));
+        async function start_training() {
 
-            cursorFollower.style.left = `${clampedX}px`;
-            cursorFollower.style.top = `${clampedY}px`;
-        });
+            button.disabled = true;
 
-        
+            let trainer = document.querySelector("trainer");
+            let time_left_node = document.querySelector("time_left")
+            let startTime = Date.now();
+
+            function countdown() {
+                const elapsedTime = Date.now() - startTime;
+
+                if (elapsedTime < 3000){
+                    trainer.querySelector("p").innerHTML = ((3000 - elapsedTime) / 1000).toFixed(0);
+                }
+
+                if (elapsedTime >= 3000) {
+                    trainer.querySelector("p").innerHTML = null;
+                }
+                
+                if (elapsedTime > 3000){
+                    time_left_node.innerHTML = ((33000 - elapsedTime) / 1000).toFixed(1);
+                }
+
+                if (elapsedTime >= 33000) {
+                    clearInterval(countdown_id);
+                    time_left_node.innerHTML = "Done!";
+                }
+            }
+
+            countdown_id = setInterval(countdown, 100);
+            return await new Promise(res => {setTimeout(() => {button.disabled = false;}, 33000);});
+        }
     </script>
 </body>
