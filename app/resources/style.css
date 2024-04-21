@@ -79,14 +79,13 @@ button {
     }
 }
 
-time_left {
+info {
     position: absolute;
     width: 10%;
     height: fit-content;
 
     padding: .5em;
     top: 1.5em;
-    right: 2.5%;
 
     color: var(--color_text2);
     font-size: medium;

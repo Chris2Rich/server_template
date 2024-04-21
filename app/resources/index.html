@@ -7,8 +7,9 @@
 
 <body>
     <h1>Aim Trainer</h1>
-    <button onclick="start_training()">Start</button>
-    <time_left>30.0</time_left>
+    <button onclick="training()">Start</button>
+    <info id="time_left" style="right: 2.5%;">30.0</info>
+    <info id="points" style="right: 17.5%;">0</info>
 
     <trainer><p></p></trainer>
 
@@ -16,13 +17,15 @@
 
         let button = document.querySelector("button");
 
-        async function start_training() {
+        async function training() {
 
             button.disabled = true;
 
             let trainer = document.querySelector("trainer");
-            let time_left_node = document.querySelector("time_left")
+            let time_left_node = document.getElementById("time_left")
             let startTime = Date.now();
+
+            let target_list = [];
 
             function countdown() {
                 const elapsedTime = Date.now() - startTime;
@@ -37,6 +40,9 @@
                 
                 if (elapsedTime > 3000){
                     time_left_node.innerHTML = ((33000 - elapsedTime) / 1000).toFixed(1);
+                    target = new Node("target")
+                    target_list.push(target)
+                    target.parent = trainer;
                 }
 
                 if (elapsedTime >= 33000) {
@@ -46,7 +52,7 @@
             }
 
             countdown_id = setInterval(countdown, 100);
-            return await new Promise(res => {setTimeout(() => {button.disabled = false;}, 33000);});
+            return await new Promise(res => {setTimeout(() => {button.disabled = false; for(i in target_list){delete i;}}, 33000);});
         }
     </script>
 </body>
