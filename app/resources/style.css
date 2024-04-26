@@ -124,7 +124,7 @@ trainer {
 }
 
 target {
-    position: absolute;
+    position: relative;
     display: block;
     width: 20px;
     height: 20px;
@@ -135,7 +135,7 @@ target {
 }
 
 moving_target {
-    position: absolute;
+    position: relative;
     display: block;
     width: 20px;
     height: 20px;
@@ -146,7 +146,7 @@ moving_target {
 }
 
 hard_target {
-    position: absolute;
+    position: relative;
     display: block;
     width: 20px;
     height: 20px;

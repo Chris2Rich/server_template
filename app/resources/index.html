@@ -40,13 +40,16 @@
                 
                 if (elapsedTime > 3000){
                     time_left_node.innerHTML = ((33000 - elapsedTime) / 1000).toFixed(1);
-                    target = new Node("target")
+                    target = document.createElement("target")
                     target_list.push(target)
-                    target.parent = trainer;
+                    trainer.appendChild(target)
                 }
 
                 if (elapsedTime >= 33000) {
                     clearInterval(countdown_id);
+                    for(let i = 0; i < target_list.length; i++){
+                        target_list[i].remove()
+                    }
                     time_left_node.innerHTML = "Done!";
                 }
             }
