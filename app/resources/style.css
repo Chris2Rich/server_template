@@ -122,36 +122,3 @@ trainer {
         height: 100%;
     }
 }
-
-target {
-    position: relative;
-    display: block;
-    width: 20px;
-    height: 20px;
-
-    border-radius: 100%;
-    background-color: var(--color_text_active1);
-    border: 3px solid var(--color_text_active2);
-}
-
-moving_target {
-    position: relative;
-    display: block;
-    width: 20px;
-    height: 20px;
-
-    border-radius: 100%;
-    background-color: var(--alt_color_text_active1);
-    border: 3px solid var(--alt_color_text_active2);
-}
-
-hard_target {
-    position: relative;
-    display: block;
-    width: 20px;
-    height: 20px;
-
-    border-radius: 100%;
-    background-color: var(--alt2_color_text_active1);
-    border: 3px solid var(--alt2_color_text_active2);
-}

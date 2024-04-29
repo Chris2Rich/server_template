@@ -2,11 +2,11 @@
 <head>
     <link rel="stylesheet" href="/style.css">
     <meta charset="UTF-8" />
-    <title>Aim Trainer</title>
+    <title>CPS</title>
 </head>
 
 <body>
-    <h1>Aim Trainer</h1>
+    <h1>CPS Tester</h1>
     <button onclick="training()">Start</button>
     <info id="time_left" style="right: 2.5%;">30.0</info>
     <info id="points" style="right: 17.5%;">0</info>
@@ -23,9 +23,10 @@
 
             let trainer = document.querySelector("trainer");
             let time_left_node = document.getElementById("time_left")
-            let startTime = Date.now();
+            let points_node = document.getElementById("points")
 
-            let target_list = [];
+            let startTime = Date.now();
+            let points = 0;
 
             function countdown() {
                 const elapsedTime = Date.now() - startTime;
@@ -40,19 +41,20 @@
                 
                 if (elapsedTime > 3000){
                     time_left_node.innerHTML = ((33000 - elapsedTime) / 1000).toFixed(1);
-                    target = document.createElement("target")
-                    target_list.push(target)
-                    trainer.appendChild(target)
                 }
 
                 if (elapsedTime >= 33000) {
                     clearInterval(countdown_id);
-                    for(let i = 0; i < target_list.length; i++){
-                        target_list[i].remove()
-                    }
+                    points_node.Value = 0;
                     time_left_node.innerHTML = "Done!";
                 }
             }
+
+            trainer.addEventListener("click", () => {
+                points++;
+                points_node.Value = points;
+                console.log(points);
+            })
 
             countdown_id = setInterval(countdown, 100);
             return await new Promise(res => {setTimeout(() => {button.disabled = false; for(i in target_list){delete i;}}, 33000);});
